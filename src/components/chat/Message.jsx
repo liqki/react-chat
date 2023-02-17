@@ -45,7 +45,7 @@ function Message({ message, timestamp, sender }) {
         <div className="flex">
           <div className="flex flex-col">
             <span className="ml-auto mr-2">{user.displayName}</span>
-            <div className="bg-cyan-400 mr-2 -mt-1 rounded-tr-none flex gap-2 rounded-2xl text-lg my-1 p-1 px-2 min-w-[40px] max-w-[270px]">
+            <div className="sm:max-w-[300px] md:max-w-[400px] lg:max-w-[500px] xl:max-w-[600px] bg-cyan-400 mr-2 -mt-1 rounded-tr-none flex gap-2 rounded-2xl text-lg my-1 p-1 px-2 min-w-[40px] max-w-[250px]">
               {message}
               <span className="text-xs mt-auto">{formatDate(date)}</span>
             </div>
