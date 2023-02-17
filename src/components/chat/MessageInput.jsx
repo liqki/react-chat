@@ -1,5 +1,5 @@
 import { addDoc, collection, doc, increment, serverTimestamp, updateDoc } from "firebase/firestore";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { isMobile } from "react-device-detect";
 import { BsEmojiSunglasses } from "react-icons/bs";
 import { FaCamera } from "react-icons/fa";
@@ -14,6 +14,15 @@ function MessageInput({ scrollElement }) {
   // state for message input height and message
   const [height, setHeight] = useState(36);
   const [message, setMessage] = useState("");
+  const [cooldown, setCooldown] = useState(false);
+
+  // handle 5 second cooldown
+  useEffect(() => {
+    if (!cooldown) return;
+    setTimeout(() => {
+      setCooldown(false);
+    }, 5000);
+  }, [cooldown]);
 
   // function to handle enter press
   const onEnterPress = (e) => {
@@ -26,6 +35,7 @@ function MessageInput({ scrollElement }) {
   // function to send message and store it in db
   const sendMessage = async () => {
     if (message === "") return;
+    if (cooldown) return;
     await addDoc(collection(db, "messages"), {
       message,
       timestamp: serverTimestamp(),
@@ -37,6 +47,7 @@ function MessageInput({ scrollElement }) {
     // scroll to bottom
     scrollElement.current.scrollIntoView({ behavior: "smooth" });
     setMessage("");
+    setCooldown(true);
   };
 
   return (
