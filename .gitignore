@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# firebase credentials
+src/firebase/firebaseConfig.json

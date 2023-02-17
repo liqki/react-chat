@@ -22,4 +22,10 @@
     -ms-user-select: none;
     user-select: none;
   }
+
+  .hidescrollbar {
+    overflow-x: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
 }
