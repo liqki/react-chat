@@ -45,7 +45,7 @@ function Message({ message, timestamp, sender }) {
         <div className="flex">
           <div className="flex flex-col">
             <span className="ml-auto mr-2">{user.displayName}</span>
-            <div className="sm:max-w-[300px] md:max-w-[400px] lg:max-w-[500px] xl:max-w-[600px] bg-cyan-400 mr-2 -mt-1 rounded-tr-none flex gap-2 rounded-2xl text-lg my-1 p-1 px-2 min-w-[40px] max-w-[250px]">
+            <div className="sm:max-w-[300px] md:max-w-[400px] lg:max-w-[500px] xl:max-w-[630px] bg-cyan-400 mr-2 -mt-1 rounded-tr-none flex gap-2 rounded-2xl md:text-lg my-1 p-1 px-2 min-w-[40px] max-w-[200px]">
               {message}
               <span className="text-xs mt-auto">{formatDate(date)}</span>
             </div>
@@ -59,7 +59,7 @@ function Message({ message, timestamp, sender }) {
           <img src={senderInfo.photoURL ? senderInfo.photoURL : ""} className="w-10 h-10 rounded-full ml-1" />
           <div className="flex flex-col">
             <span className="mr-auto ml-2">{senderInfo.displayName}</span>
-            <div className="bg-pink-400 ml-2 -mt-1 rounded-tl-none flex gap-2 rounded-2xl text-lg my-1 p-1 px-2 min-w-[40px] max-w-[270px]">
+            <div className="sm:max-w-[300px] md:max-w-[400px] lg:max-w-[500px] xl:max-w-[630px] bg-pink-400 ml-2 -mt-1 rounded-tl-none flex gap-2 rounded-2xl md:text-lg my-1 p-1 px-2 min-w-[40px] max-w-[200px]">
               {message}
               <span className="text-xs mt-auto">{formatDate(date)}</span>
             </div>
