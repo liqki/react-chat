@@ -1,4 +1,4 @@
-import { doc, getDoc, onSnapshot } from "firebase/firestore";
+import { doc, onSnapshot } from "firebase/firestore";
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { db } from "../../firebase/firebase";
@@ -13,15 +13,12 @@ function Message({ message, timestamp, sender }) {
 
   // get sender info from db
   useEffect(() => {
-    const unsubscribe = () =>
-      onSnapshot(doc(db, "users", sender), (doc) => {
-        if (doc.exists()) {
-          setSenderInfo({
-            displayName: doc.data().displayName,
-            photoURL: doc.data().photoURL,
-          });
-        }
+    const unsubscribe = onSnapshot(doc(db, "users", sender), (doc) => {
+      setSenderInfo({
+        displayName: doc.data().displayName,
+        photoURL: doc.data().photoURL,
       });
+    });
 
     return () => unsubscribe();
   }, []);
@@ -32,7 +29,7 @@ function Message({ message, timestamp, sender }) {
     setDate(new Date(timestamp.seconds * 1000));
   }, [timestamp]);
 
-  // functin to format date to hh:mm
+  // function to format date to hh:mm
   const formatDate = (date) => {
     if (!date) return;
     return (date.getHours() < 10 ? "0" : "") + date.getHours() + ":" + (date.getMinutes() < 10 ? "0" : "") + date.getMinutes();
